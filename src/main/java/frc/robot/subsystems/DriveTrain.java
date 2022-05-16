@@ -16,10 +16,10 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
+import frc.robot.Constants;
 import frc.robot.commands.drivetrain.SetArcadeDrive;
 import frc.robot.commands.drivetrain.SetArcadeDriveVelocity;
 import frc.robot.util.Controls;
@@ -30,17 +30,17 @@ import frc.vitruvianlib.driverstation.Shuffleboard;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends SubsystemBase {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     private TalonSRX[] driveMotors = {
-        new TalonSRX(RobotMap.leftFrontDriveMotor),
-        new TalonSRX(RobotMap.leftRearDriveMotor),
-        new TalonSRX(RobotMap.rightFrontDriveMotor),
-        new TalonSRX(RobotMap.rightRearDriveMotor),
+        new TalonSRX(Constants.CAN.leftFrontDriveMotor),
+        new TalonSRX(Constants.CAN.leftRearDriveMotor),
+        new TalonSRX(Constants.CAN.rightFrontDriveMotor),
+        new TalonSRX(Constants.CAN.rightRearDriveMotor),
     };
 
-    DoubleSolenoid driveTrainShifters = new DoubleSolenoid(RobotMap.PCMOne, RobotMap.driveTrainShifterForward, RobotMap.driveTrainShifterReverse);
+    DoubleSolenoid driveTrainShifters = new DoubleSolenoid(Constants.CAN.PCMOne, Constants.CAN.driveTrainShifterForward, Constants.CAN.driveTrainShifterReverse);
     public AHRS navX = new AHRS(SerialPort.Port.kMXP);
 
     public static int controlMode = 0;
@@ -77,10 +77,10 @@ public class DriveTrain extends Subsystem {
 
 
 //        VitruvianLog drivetrainLog = new VitruvianLog("DriveTrain", 0.5);
-//        drivetrainLog.addLogField("drivetrainPdpLeftFrontCurrent", () -> Controls.pdp.getCurrent(RobotMap.pdpChannelDriveTrainLeftForward));
-//        drivetrainLog.addLogField("drivetrainPdpLeftRearCurrent",  () -> Controls.pdp.getCurrent(RobotMap.pdpChannelDriveTrainLeftReverse));
-//        drivetrainLog.addLogField("drivetrainPdpRightFrontCurrent", () -> Controls.pdp.getCurrent(RobotMap.pdpChannelDriveTrainRightForward));
-//        drivetrainLog.addLogField("drivetrainPdpRightRearCurrent", () -> Controls.pdp.getCurrent(RobotMap.pdpChannelDriveTrainRightReverse));
+//        drivetrainLog.addLogField("drivetrainPdpLeftFrontCurrent", () -> Controls.pdp.getCurrent(Constants.CAN.pdpChannelDriveTrainLeftForward));
+//        drivetrainLog.addLogField("drivetrainPdpLeftRearCurrent",  () -> Controls.pdp.getCurrent(Constants.CAN.pdpChannelDriveTrainLeftReverse));
+//        drivetrainLog.addLogField("drivetrainPdpRightFrontCurrent", () -> Controls.pdp.getCurrent(Constants.CAN.pdpChannelDriveTrainRightForward));
+//        drivetrainLog.addLogField("drivetrainPdpRightRearCurrent", () -> Controls.pdp.getCurrent(Constants.CAN.pdpChannelDriveTrainRightReverse));
 //        drivetrainLog.addLogField("drivetrainTalonLeftFrontCurrent", () -> driveMotors[0].getOutputCurrent());
 //        drivetrainLog.addLogField("drivetrainTalonLeftRearCurrent", () -> driveMotors[1].getOutputCurrent());
 //        drivetrainLog.addLogField("drivetrainTalonRightFrontCurrent", () -> driveMotors[2].getOutputCurrent());
@@ -209,9 +209,9 @@ public class DriveTrain extends Subsystem {
     }
 
     @Override
-    public void initDefaultCommand() {
+    public void periodic() { 
         // Set the default command for a subsystem here.
         //defaultCommand = new SetArcadeDriveVelocity();
-        setDefaultCommand(new SetArcadeDrive());
+        updateSmartDashboard();
     }
 }

@@ -5,18 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.climber;
+// package frc.robot.commands.climber;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.KillAll;
+// import edu.wpi.first.wpilibj.command.CommandGroup;
+// import frc.robot.commands.KillAll;
 
-/**
- * An example command.  You can replace me with your own command.
- */
-public class SetClimbMode extends CommandGroup {
-    public SetClimbMode() {
-        addSequential(new SetWristElevatorClimbPositions());
-//        addSequential(new ToggleGreyClimber());
-        addSequential(new KillAll());
-    }
-}
+// /**
+//  * An example command.  You can replace me with your own command.
+//  */
+// public class SetClimbMode extends CommandGroup {
+//     public SetClimbMode() {
+//         addSequential(new SetWristElevatorClimbPositions());
+// //        addSequential(new ToggleGreyClimber());
+//         addSequential(new KillAll());
+//     }
+// }
