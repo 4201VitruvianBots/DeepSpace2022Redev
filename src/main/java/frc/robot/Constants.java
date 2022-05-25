@@ -32,6 +32,8 @@ public final class Constants {
         public static int elevatorBottom = 2;
         public static int elevatorTop = 3;
         public static int elevatorMid = 4;
+
+        public static double elevatorSetPoint = 0;
     }
     public static final class Wrist {
         public static int wristMotor = 40;

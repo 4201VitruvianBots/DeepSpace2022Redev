@@ -44,7 +44,6 @@ public class Elevator extends SubsystemBase {
     private double arbitraryFFUp = 1.5 / 12;
     private double arbitraryFFDown = 0 / 12;
 
-    public static double elevatorSetPoint = 0;
     private int controlMode = 1;
 
     public static boolean initialCalibration = false;
